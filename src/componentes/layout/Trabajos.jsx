@@ -2,7 +2,7 @@
 import './Trabajos.css'
 import { useState } from 'react';
 import trabajos from '../data/trabajos';
-import Modal from '../modal';
+import Modal from '../Modal';
 
 const Trabajos = () => {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('todos');
