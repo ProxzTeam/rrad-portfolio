@@ -5,27 +5,27 @@ import "./CVPage.css";
 
 // Vista dedicada del CV con tema independiente y exportacion a PDF.
 const CVPage = () => {
-    // Tema exclusivo de la vista CV (no depende del dark mode de la pagina principal).
-    const [theme, setTheme] = useState(() => {
-        return localStorage.getItem("cv-theme") || "dark";
+    // Arranca con el mismo booleano de tema que usa la pagina principal.
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        return JSON.parse(localStorage.getItem("dark-mode") || "false");
     });
 
     // Estado para bloquear el boton mientras se genera el PDF.
     const [isGenerating, setIsGenerating] = useState(false);
 
-    // Persiste la preferencia de tema en localStorage.
+    // Persiste la preferencia de tema en el mismo key compartido por el home.
     useEffect(() => {
-        localStorage.setItem("cv-theme", theme);
-    }, [theme]);
+        localStorage.setItem("dark-mode", isDarkMode);
+    }, [isDarkMode]);
 
     // Genera y descarga el CV en PDF usando import dinamico para no cargar la libreria al inicio.
     const downloadPDF = async () => {
-        const page = document.getElementById("cv-page");
-        if (!page) {
+            const exportRoot = document.getElementById("cv-export-root");
+            if (!exportRoot) {
             return;
         }
 
-        const bgColor = theme === "light" ? "#ffffff" : "#161c26";
+        const bgColor = isDarkMode ? "#161c26" : "#ffffff";
         setIsGenerating(true);
 
         try {
@@ -39,7 +39,7 @@ const CVPage = () => {
                     html2canvas: { scale: 2, useCORS: true, backgroundColor: bgColor },
                     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
                 })
-                .from(page)
+                .from(exportRoot)
                 .save();
         } finally {
             setIsGenerating(false);
@@ -47,7 +47,11 @@ const CVPage = () => {
     };
 
     return (
-        <div className="cv-view" data-theme={theme}>
+        <div
+            id="cv-export-root"
+            className={`cv-view ${isGenerating ? "is-exporting" : ""}`.trim()}
+            data-theme={isDarkMode ? "dark" : "light"}
+        >
             {/* Barra superior: marca, switch de tema y acciones */}
             <div className="toolbar">
                 <a
@@ -68,8 +72,8 @@ const CVPage = () => {
                         className="cv-dark-mode"
                         name="cv-dark-mode"
                         id="cv-dark-mode"
-                        checked={theme === "dark"}
-                        onChange={(isDark) => setTheme(isDark ? "dark" : "light")}
+                        checked={isDarkMode}
+                        onChange={setIsDarkMode}
                         useBodyClass={false}
                     />
 

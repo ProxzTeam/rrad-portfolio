@@ -500,6 +500,22 @@
   text-decoration: underline;
 }
 
+/* Ajustes temporales cuando se exporta a PDF */
+.cv-view.is-exporting {
+  padding: 0;
+}
+
+.cv-view.is-exporting .toolbar {
+  display: none;
+}
+
+.cv-view.is-exporting #cv-page {
+  margin: 0;
+  max-width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 /* Ajustes responsivos para tablet/movil. */
 @media screen and (max-width: 900px) {
   .cv-view .toolbar {
