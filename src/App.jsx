@@ -9,7 +9,9 @@ import Footer from "./componentes/layout/Footer";
 function App() {
   return (
     <>
+      {/* Contenedor principal que limita el ancho total del sitio */}
       <div className="contenedor">
+        {/* Secciones renderizadas en orden vertical para formar la landing */}
         <Header></Header>
         <Hero></Hero>
         <Clientes></Clientes>

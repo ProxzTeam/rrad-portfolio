@@ -3,14 +3,19 @@ import { useState, useEffect } from "react";
 
 const DarkModeSwitch = () => {
 
+    // Toma el tema guardado en localStorage para mantener preferencia entre recargas.
     const estadoInicial = JSON.parse(localStorage.getItem("dark-mode") || false);
+    // Estado que controla si el sitio está en modo oscuro o claro.
     const [darkMode, setDarkMode] = useState(estadoInicial);
+
+    // Alterna el estado y lo persiste en localStorage.
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
 
         localStorage.setItem("dark-mode", !darkMode)
     };
 
+    // Aplica o remueve la clase "dark" en <body> para activar estilos globales de tema.
     useEffect(() => {
         if (darkMode) {
             document.body.classList.add("dark");
@@ -21,6 +26,7 @@ const DarkModeSwitch = () => {
 
     return (
         <>
+            {/* Switch visual del tema: input oculto + iconos de sol y luna */}
             <label className="dark-mode">
                 <input
                     type="checkbox"

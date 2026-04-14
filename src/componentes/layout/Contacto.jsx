@@ -2,12 +2,16 @@ import './Contacto.css'
 
 import { useState } from 'react';
 
+// Formulario de contacto con validacion simple en cliente.
 const Contacto = () => {
+    // Estados controlados de los campos.
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [mensaje, setMensaje] = useState('');
+    // Guarda mensaje de error de validacion.
     const [error, setError] = useState(null);
 
+    // Expresiones regulares para validar entradas.
     const regEx = {
 
         nombre: /^[a-zA-Z\s-]{2,}$/,
@@ -18,6 +22,7 @@ const Contacto = () => {
     };
 
 
+    // Actualiza el estado correcto segun el campo editado.
     const handleInput = (e, input) => {
 
         if (input === 'nombre') {
@@ -33,6 +38,7 @@ const Contacto = () => {
 
     };
 
+    // Valida antes de enviar a Formspree.
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -71,6 +77,7 @@ const Contacto = () => {
                     <h3 className="titulo">Hagamos tu idea una realidad</h3>
                     <p className="subtitulo">Escribe y construyamos el negocio de tus sueños</p>
                 </div>
+                {/* Formulario controlado que envia al endpoint de Formspree */}
                 <form action="https://formspree.io/f/xpqjnbal" method='post' className="formulario" onSubmit={handleSubmit}>
                     <div className="grupo-formulario">
                         <label htmlFor="nombre">Nombre</label>

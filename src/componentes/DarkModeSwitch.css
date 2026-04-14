@@ -1,4 +1,5 @@
 .dark-mode {
+    /* Contenedor del switch de tema */
     background: var(--shade-2);
 
     display: flex;
@@ -13,6 +14,7 @@
     }
 
     .icono {
+        /* Cada icono representa un estado visual del tema */
         padding: 7px 12px;
         display: flex;
         align-items: center;

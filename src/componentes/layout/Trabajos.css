@@ -1,5 +1,6 @@
 .trabajos {
     .filtros {
+        /* Contenedor de filtros por categoria */
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
@@ -40,6 +41,7 @@
     }
 
     .grid {
+        /* Mosaico responsive de proyectos */
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 40px 20px;
@@ -63,6 +65,7 @@
         }
 
         .trabajo {
+            /* Tarjeta individual de proyecto */
             .thumb {
                 width: 100%;
                 display: inline-block;

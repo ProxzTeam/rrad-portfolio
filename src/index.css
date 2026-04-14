@@ -1,3 +1,4 @@
+/* Reset base para mantener consistencia de caja y espaciados */
 *,
 *::after,
 *::before {
@@ -7,6 +8,7 @@
 }
 
 :root {
+  /* Escala de grises y color principal de la marca */
   --shade-1: #F2F2F2;
   --shade-2: #D9D9D9;
   --shade-3: #BFBFBF;
@@ -22,6 +24,7 @@
 }
 
 body {
+  /* Tipografia y colores base del sitio */
   font-family: 'Inter', serif;
   background: var(--shade-1);
   color: var(--shade-9);
@@ -33,6 +36,7 @@ body {
 }
 
 a {
+  /* Estilo global de enlaces */
   text-decoration: none;
   color: var(--shade-8);
   font-weight: 500;
@@ -49,12 +53,14 @@ a {
 }
 
 .contenedor {
+  /* Contenedor principal centrado con ancho maximo */
   width: 95%;
   max-width: 1200px;
   margin: auto;
 }
 
 .boton {
+  /* Componente de boton reutilizable */
   background: var(--primario);
   color: #fff;
   border: none;
@@ -80,6 +86,7 @@ a {
 
 .clientes,
 .trabajos, .contacto, .footer {
+  /* Estructura comun para secciones con encabezado centrado */
   display: flex;
   flex-direction: column;
   gap: 40px;

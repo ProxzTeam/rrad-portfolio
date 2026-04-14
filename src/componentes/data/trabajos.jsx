@@ -1,3 +1,9 @@
+// Fuente de datos local para la seccion de trabajos/portafolio.
+// Cada objeto contiene:
+// - id: identificador unico
+// - categoria: clave usada por los filtros
+// - thumb: imagen de portada para la tarjeta
+// - info: contenido mostrado en el modal
 const trabajos = [
 	{
 		id: 1,

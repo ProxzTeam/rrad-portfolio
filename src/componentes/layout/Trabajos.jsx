@@ -4,12 +4,18 @@ import { useState } from 'react';
 import trabajos from '../data/trabajos';
 import Modal from '../Modal';
 
+// Seccion de portafolio con filtro por categoria y modal de detalle.
 const Trabajos = () => {
+    // Categoria activa del filtro.
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('todos');
+    // Lista visible en el grid luego de aplicar filtros.
     const [trabajosFiltrados, setTrabajosFiltrados] = useState(trabajos);
+    // Controla si el modal esta abierto.
     const [estadosModal, setEstadoModal] = useState(false);
+    // Guarda el proyecto que se muestra en el modal.
     const [trabajoSeleccionado, setTrabajoSeleccionado] = useState(trabajos[0])
 
+    // Cambia la categoria y recalcula los trabajos a mostrar.
     const handleChange = (e) => {
         const categoria = e.target.id;
         setCategoriaSeleccionada(categoria);
@@ -30,6 +36,7 @@ const Trabajos = () => {
 
     };
 
+    // Abre el modal y busca el trabajo correspondiente al id seleccionado.
     const openModal = (e, id) => {
         e.preventDefault();
         setEstadoModal(true);
@@ -44,6 +51,7 @@ const Trabajos = () => {
         setTrabajoSeleccionado(trabajo);
     };
 
+    // Cierra el modal de detalle.
     const closeModal = () => {
         setEstadoModal(false);
     };
@@ -57,6 +65,7 @@ const Trabajos = () => {
             </div>
 
             <div className="filtros">
+                {/* Filtros por categoria usando radio buttons controlados */}
                 <label htmlFor="todos">
                     <input type="radio" name="categoria" id="todos" onChange={handleChange} checked={categoriaSeleccionada === 'todos'} />
                     <span className="opcion">Todos</span>
@@ -79,6 +88,7 @@ const Trabajos = () => {
                 </label>
             </div>
 
+            {/* Grid de tarjetas de trabajos segun filtro activo */}
             <div className="grid">
                 {trabajosFiltrados.map((trabajo, index) => {
                     return (
@@ -107,6 +117,7 @@ const Trabajos = () => {
             </div>
         </section>
 
+        {/* Render condicional del modal cuando hay un trabajo abierto */}
         {estadosModal && <Modal closeModal={closeModal} trabajo={trabajoSeleccionado} />}
 
     </>

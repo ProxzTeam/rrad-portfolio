@@ -1,4 +1,5 @@
 .acerca-de {
+    /* Seccion de perfil en dos columnas */
     display: flex;
     justify-content: center;
 
@@ -10,6 +11,7 @@
 
         .col-1 {
             .fotos {
+                /* Bloque sticky para mantener fotos visibles al hacer scroll */
                 display: flex;
                 justify-content: flex-end;
                 position: sticky;
@@ -41,6 +43,7 @@
         }
 
         .col-2 {
+            /* Columna de texto descriptivo y CTA */
             display: flex;
             flex-direction: column;
             align-items: start;

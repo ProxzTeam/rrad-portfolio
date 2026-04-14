@@ -1,4 +1,5 @@
 .header {
+    /* Header en 3 columnas: logo, nav y switch */
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: 20px;
@@ -41,6 +42,7 @@
     }
 
     .navbar {
+        /* Navegacion horizontal con ajuste para pantallas pequenas */
         display: flex;
         flex-wrap: wrap;
         justify-content: center;

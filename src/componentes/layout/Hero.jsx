@@ -1,8 +1,10 @@
 import "./Hero.css";
 
+// Seccion principal de presentacion (mensaje + llamadas a la accion).
 const Hero = () => {
     return (<>
         <section className="hero">
+            {/* Contenido textual sobre el video de fondo */}
             <div className="contenido">
                 <h3 className="titulo">
                     <span>Hola!</span>Soy Danilo Rivera
@@ -36,6 +38,7 @@ const Hero = () => {
                 </div>
             </div>
 
+            {/* Video decorativo de fondo para reforzar el impacto visual */}
             <div className="video-container">
                 <video src="./assets/video_fondo.mp4" loop autoPlay muted className="video" type="video/mp4"></video>
 

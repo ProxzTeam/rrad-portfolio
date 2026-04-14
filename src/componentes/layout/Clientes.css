@@ -1,6 +1,7 @@
 .clientes {
 
     .logos {
+        /* Grilla flexible de logos de clientes */
         display: flex;
         flex-wrap: wrap;
         gap: 20px;

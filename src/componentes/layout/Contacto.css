@@ -1,11 +1,13 @@
 .contacto {
     .formulario {
+        /* Formulario en dos columnas con comportamiento responsive */
         width: 70%;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
 
         .grupo-formulario {
+            /* Grupo base para label + control */
             display: flex;
             flex-direction: column;
             gap: 5px;

@@ -1,4 +1,5 @@
 .overlay {
+    /* Capa fija de fondo que cubre toda la pantalla */
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
@@ -12,6 +13,7 @@
 
 
     .modal {
+        /* Contenedor principal del contenido modal */
         width: 90%;
         max-width: 1200px;
         height: 90%;
@@ -40,6 +42,7 @@
         }
 
         .grid {
+            /* Distribucion en dos columnas: imagen + informacion */
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;

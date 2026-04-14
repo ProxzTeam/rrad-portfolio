@@ -1,5 +1,6 @@
 import "./Clientes.css"
 
+// Seccion de prueba social: logos de clientes o marcas.
 const Clientes = () => {
 
     return (
@@ -10,6 +11,7 @@ const Clientes = () => {
                     <p className="subtitulo">Estas marcas han confiado en mis servicios como freelance</p>
                 </div>
 
+                {/* Logos renderizados de forma estatica */}
                 <div className="logos">
                     <img src="./assets/logos/Recharge.svg" alt="Logo de Recharge" className="logo" />
                     <img src="./assets/logos/Volume.svg" alt="Logo de Volumne" className="logo" />

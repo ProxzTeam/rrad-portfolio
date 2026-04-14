@@ -1,4 +1,6 @@
 import './Footer.css'
+
+// Pie de pagina con enlaces a redes sociales.
 const Footer = () => {
 
     return (
@@ -9,6 +11,7 @@ const Footer = () => {
                     <p className="subtitulo">Sigueme en redes para estar al tanto de las ultimas novedades. </p>
                 </div>
 
+                {/* Lista de enlaces externos a perfiles sociales */}
                 <div className="links">
                     <a href="https://www.linkedin.com/in/angel-danilo-rivera-rojas-820014357/" target="_blank" className="link linkedin">Linkedln
                         <div className="icono">

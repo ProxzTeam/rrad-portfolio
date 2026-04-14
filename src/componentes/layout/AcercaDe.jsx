@@ -1,10 +1,13 @@
 import './AcercaDe.css';
+
+// Seccion de perfil profesional y propuesta de valor.
 const AcercaDe = () => {
     return (
         <>
             <section className="acerca-de" id="acerca-de">
                 <div className="grid">
                     <div className="col-1">
+                        {/* Composicion de fotos personales */}
                         <div className="fotos">
                             <img src="./assets/yo.png" className="foto" alt="" />
                             <img src="./assets/trabajos//14.png" className="foto" alt="" />
@@ -12,6 +15,7 @@ const AcercaDe = () => {
                         </div>
                     </div>
                     <div className="col-2">
+                        {/* Texto descriptivo + CTA para contacto */}
                         <h4 className="pre-titulo">Acerca de mí</h4>
                         <h3 className="titulo">La razón por la que deberías contratarme...</h3>
                         <p className="resumen">Soy Ángel Danilo Rivera Rojas, estudiante de Ingeniería en Sistemas Computacionales y desarrollador apasionado por la tecnología, el diseño y la creación de soluciones digitales con impacto real.
