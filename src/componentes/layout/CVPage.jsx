@@ -15,32 +15,45 @@ const CVPage = () => {
 
     // Persiste la preferencia de tema en el mismo key compartido por el home.
     useEffect(() => {
-        localStorage.setItem("dark-mode", isDarkMode);
+        localStorage.setItem("dark-mode", JSON.stringify(isDarkMode));
     }, [isDarkMode]);
 
-    // Genera y descarga el CV en PDF usando import dinamico para no cargar la libreria al inicio.
+    // Genera y descarga el CV en PDF usando import dinamico.
     const downloadPDF = async () => {
-            const exportRoot = document.getElementById("cv-export-root");
-            if (!exportRoot) {
-            return;
-        }
+        const exportRoot = document.getElementById("cv-export-root");
+        if (!exportRoot || isGenerating) return;
 
-        const bgColor = isDarkMode ? "#161c26" : "#ffffff";
         setIsGenerating(true);
 
         try {
             const { default: html2pdf } = await import("html2pdf.js");
 
+            await new Promise((resolve) => setTimeout(resolve, 300));
+
             await html2pdf()
                 .set({
                     margin: 0,
                     filename: "Angel_Rivera_CV.pdf",
-                    image: { type: "jpeg", quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true, backgroundColor: bgColor },
-                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+                    image: { type: "jpeg", quality: 1 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: isDarkMode ? "#161c26" : "#ffffff",
+                        scrollX: 0,
+                        scrollY: 0,
+                        windowWidth: 1400,
+                        windowHeight: 2000
+                    },
+                    jsPDF: {
+                        unit: "mm",
+                        format: "a4",
+                        orientation: "portrait"
+                    }
                 })
                 .from(exportRoot)
                 .save();
+        } catch (error) {
+            console.error("Error al generar el PDF:", error);
         } finally {
             setIsGenerating(false);
         }
@@ -52,7 +65,6 @@ const CVPage = () => {
             className={`cv-view ${isGenerating ? "is-exporting" : ""}`.trim()}
             data-theme={isDarkMode ? "dark" : "light"}
         >
-            {/* Barra superior: marca, switch de tema y acciones */}
             <div className="toolbar">
                 <a
                     className="toolbar-brand"
@@ -67,7 +79,6 @@ const CVPage = () => {
                 </a>
 
                 <div className="toolbar-actions">
-                    {/* Switch reutilizado desde el componente global */}
                     <DarkModeSwitch
                         className="cv-dark-mode"
                         name="cv-dark-mode"
@@ -81,19 +92,18 @@ const CVPage = () => {
                         Volver
                     </Link>
 
-                    {/* Boton de descarga con estado de carga */}
                     <button
                         className={`btn btn-primary ${isGenerating ? "btn-loading" : ""}`}
                         id="downloadBtn"
                         onClick={downloadPDF}
                         type="button"
+                        disabled={isGenerating}
                     >
                         {isGenerating ? "Generando..." : "Download PDF"}
                     </button>
                 </div>
             </div>
 
-            {/* Tarjeta principal del CV */}
             <div id="cv-page">
                 <header className="cv-header">
                     <div className="header-inner">
@@ -122,7 +132,12 @@ const CVPage = () => {
                             >
                                 LinkedIn Profile
                             </a>
-                            <a className="contact-item" href="https://rrad.dev" target="_blank" rel="noopener noreferrer">
+                            <a
+                                className="contact-item"
+                                href="https://rrad.dev"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 rrad.dev
                             </a>
                         </div>
@@ -130,15 +145,16 @@ const CVPage = () => {
                 </header>
 
                 <div className="cv-body">
-                    {/* Columna principal del contenido profesional */}
                     <main className="cv-main">
                         <section className="section">
                             <div className="section-label">Profile</div>
                             <p className="summary-text">
-                                Computer Systems Engineering student with strong focus on frontend development and mobile
-                                applications. Experienced in building full-stack projects using technologies like React, Node.js,
-                                and Android (Kotlin). Passionate about creating user-centered solutions, improving performance, and
-                                continuously learning new technologies.
+                                Computer Systems Engineering student with strong focus on
+                                frontend development and mobile applications. Experienced in
+                                building full-stack projects using technologies like React,
+                                Node.js, and Android (Kotlin). Passionate about creating
+                                user-centered solutions, improving performance, and continuously
+                                learning new technologies.
                             </p>
                         </section>
 
@@ -152,8 +168,9 @@ const CVPage = () => {
                                     <span className="exp-date">2025 - Present</span>
                                 </div>
                                 <p className="exp-desc">
-                                    Customer-facing service role developing strong interpersonal communication, teamwork, and
-                                    problem-solving skills in a fast-paced environment.
+                                    Customer-facing service role developing strong interpersonal
+                                    communication, teamwork, and problem-solving skills in a
+                                    fast-paced environment.
                                 </p>
                             </div>
 
@@ -164,8 +181,9 @@ const CVPage = () => {
                                     <span className="exp-date">Academic Program</span>
                                 </div>
                                 <p className="exp-desc">
-                                    Participated in an intensive bootcamp by HPE, gaining hands-on experience with enterprise
-                                    software practices, agile methodologies, and technology solutions.
+                                    Participated in an intensive bootcamp by HPE, gaining hands-on
+                                    experience with enterprise software practices, agile
+                                    methodologies, and technology solutions.
                                 </p>
                                 <div className="exp-tags">
                                     <span className="exp-tag">HPE</span>
@@ -177,12 +195,15 @@ const CVPage = () => {
                             <div className="exp-item">
                                 <div className="exp-role">Team Leader - AWS Workshop</div>
                                 <div className="exp-meta">
-                                    <span className="exp-company">AWS Cloud Club - TecNM Ocotlan (CardenalITOS)</span>
+                                    <span className="exp-company">
+                                        AWS Cloud Club - TecNM Ocotlan (CardenalITOS)
+                                    </span>
                                     <span className="exp-date">Workshop</span>
                                 </div>
                                 <p className="exp-desc">
-                                    Led a team in the Build Games in Minutes using Python and Amazon Q Developer workshop,
-                                    coordinating tasks and driving collaborative solutions.
+                                    Led a team in the Build Games in Minutes using Python and
+                                    Amazon Q Developer workshop, coordinating tasks and driving
+                                    collaborative solutions.
                                 </p>
                                 <div className="exp-tags">
                                     <span className="exp-tag">AWS</span>
@@ -195,27 +216,42 @@ const CVPage = () => {
 
                         <section className="section">
                             <div className="section-label">Certifications</div>
+
                             <div className="cert-item">
                                 <span className="cert-num">01</span>
                                 <div>
-                                    <div className="cert-name">Pensamiento estrategico y mentalidad estrategica</div>
+                                    <div className="cert-name">
+                                        Pensamiento estrategico y mentalidad estrategica
+                                    </div>
                                     <div className="cert-issuer">Santander Open Academy</div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">02</span>
                                 <div>
-                                    <div className="cert-name">Fundamentals of Machine Learning and Artificial Intelligence</div>
-                                    <div className="cert-issuer">AWS Training & Certification</div>
+                                    <div className="cert-name">
+                                        Fundamentals of Machine Learning and Artificial Intelligence
+                                    </div>
+                                    <div className="cert-issuer">
+                                        AWS Training & Certification
+                                    </div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">03</span>
                                 <div>
-                                    <div className="cert-name">AWS Cloud Foundations for Professionals - Cloud Practitioner Essentials</div>
-                                    <div className="cert-issuer">AWS Training & Certification</div>
+                                    <div className="cert-name">
+                                        AWS Cloud Foundations for Professionals - Cloud Practitioner
+                                        Essentials
+                                    </div>
+                                    <div className="cert-issuer">
+                                        AWS Training & Certification
+                                    </div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">04</span>
                                 <div>
@@ -223,14 +259,15 @@ const CVPage = () => {
                                     <div className="cert-issuer">CISCO Networking Academy</div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">05</span>
                                 <div>
-                                    <div className="cert-name">Python Essentials 1
-                                    </div>
+                                    <div className="cert-name">Python Essentials 1</div>
                                     <div className="cert-issuer">CISCO Networking Academy</div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">06</span>
                                 <div>
@@ -238,39 +275,41 @@ const CVPage = () => {
                                     <div className="cert-issuer">CISCO Networking Academy</div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">07</span>
                                 <div>
-                                    <div className="cert-name">Official Scrum Fundamentals Certification
+                                    <div className="cert-name">
+                                        Official Scrum Fundamentals Certification
                                     </div>
                                     <div className="cert-issuer">AIBES</div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">08</span>
                                 <div>
-                                    <div className="cert-name">Python 101 for Data Science
-                                    </div>
+                                    <div className="cert-name">Python 101 for Data Science</div>
                                     <div className="cert-issuer">IBM</div>
                                 </div>
                             </div>
+
                             <div className="cert-item">
                                 <span className="cert-num">09</span>
                                 <div>
-                                    <div className="cert-name">Introduction to Cloud
-
-                                    </div>
+                                    <div className="cert-name">Introduction to Cloud</div>
                                     <div className="cert-issuer">IBM</div>
                                 </div>
                             </div>
                         </section>
                     </main>
 
-                    {/* Barra lateral con resumen de perfil */}
                     <aside className="cv-aside">
                         <div className="aside-section">
                             <div className="aside-label">Education</div>
-                            <div className="edu-degree">B.Eng. Computer Systems Engineering</div>
+                            <div className="edu-degree">
+                                B.Eng. Computer Systems Engineering
+                            </div>
                             <div className="edu-school">Instituto Tecnologico de Ocotlan</div>
                             <div className="edu-year">Expected 2027</div>
                         </div>
@@ -323,10 +362,16 @@ const CVPage = () => {
                     </aside>
                 </div>
 
-                {/* Pie del CV */}
                 <footer className="cv-footer">
-                    <span className="footer-note">Angel Danilo Rivera Rojas - 2025</span>
-                    <a className="footer-link" href="https://rrad.dev" target="_blank" rel="noopener noreferrer">
+                    <span className="footer-note">
+                        Angel Danilo Rivera Rojas - 2025
+                    </span>
+                    <a
+                        className="footer-link"
+                        href="https://rrad.dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         rrad.dev
                     </a>
                 </footer>
