@@ -1,5 +1,5 @@
 import "./Header.css";
-import DarkModeSwitch from "../DarkModeSwitch";
+import DarkModeSwitch from "../../DarkModeSwitch";
 import { Link } from "react-router-dom";
 
 // Encabezado principal con marca, navegacion y selector de tema.

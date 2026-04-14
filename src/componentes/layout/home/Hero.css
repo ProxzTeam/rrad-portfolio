@@ -1,6 +1,6 @@
 .hero {
     /* Bloque hero con fondo multimedia y capa de contraste */
-    background-image: url('./assets/hero-bg.jpg');
+    background-image: url('/assets/hero-bg.jpg');
     background-size: cover;
     border-radius: 20px;
     overflow: hidden;

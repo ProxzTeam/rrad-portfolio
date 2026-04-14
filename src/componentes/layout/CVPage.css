@@ -9,12 +9,12 @@
     --bg-date: #273044;
     --border: #2e3a50;
     --orange: var(--brand-accent);
-    --orange-dim: rgba(232, 82, 42, 0.08);
-    --orange-border: rgba(232, 82, 42, 0.22);
+    --orange-dim: rgba(59, 130, 246, 0.08);
+    --orange-border: rgba(59, 130, 246, 0.22);
     --text-1: #f0f4ff;
     --text-2: #8fa3c0;
     --text-3: #506070;
-    --glow: rgba(232, 82, 42, 0.12);
+    --glow: rgba(59, 130, 246, 0.12);
     --shadow: 0 4px 40px rgba(0, 0, 0, 0.35);
 }
 
@@ -28,12 +28,12 @@
     --bg-date: #f0ede8;
     --border: #ddd9d3;
     --orange: var(--brand-accent-strong);
-    --orange-dim: rgba(200, 67, 28, 0.07);
-    --orange-border: rgba(200, 67, 28, 0.2);
+    --orange-dim: rgba(59, 130, 246, 0.07);
+    --orange-border: rgba(59, 130, 246, 0.2);
     --text-1: #0f0f0f;
     --text-2: #4a4a4a;
     --text-3: #888880;
-    --glow: rgba(200, 67, 28, 0.07);
+    --glow: rgba(59, 130, 246, 0.07);
     --shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
 }
 
@@ -237,6 +237,89 @@ body {
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
+}
+
+.cv-view .social-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.cv-view .social-title {
+    width: 100%;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+}
+
+.cv-view .social-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    height: 1px;
+    background: var(--border);
+}
+
+.cv-view .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.cv-view .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--bg-chip);
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.cv-view .social-link:hover {
+    border-color: var(--orange-border);
+    color: var(--orange);
+}
+
+.cv-view .social-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cv-view .social-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+.cv-view .personal-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.cv-view .personal-item {
+    font-size: 12px;
+    color: var(--text-2);
 }
 
 .cv-view .contact-item {
@@ -563,6 +646,40 @@ body {
     gap: 4px;
 }
 
+.cv-view.is-exporting .social-block {
+    gap: 2px;
+}
+
+.cv-view.is-exporting .social-title {
+    font-size: 7px;
+    letter-spacing: 0.16em;
+}
+
+.cv-view.is-exporting .social-title::after {
+    min-width: 42px;
+}
+
+.cv-view.is-exporting .social-links {
+    gap: 2px;
+    max-width: 240px;
+}
+
+.cv-view.is-exporting .social-link {
+    font-size: 7.5px;
+    padding: 2px 6px;
+    gap: 4px;
+}
+
+.cv-view.is-exporting .social-icon {
+    width: 10px;
+    height: 10px;
+}
+
+.cv-view.is-exporting .social-icon svg {
+    width: 6px;
+    height: 6px;
+}
+
 .cv-view.is-exporting .contact-item {
     font-size: 8px;
 }
@@ -731,6 +848,12 @@ body {
 
     .cv-view .header-contacts {
         align-items: flex-start;
+    }
+
+    .cv-view .social-block,
+    .cv-view .social-links {
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     .cv-view .cv-main {

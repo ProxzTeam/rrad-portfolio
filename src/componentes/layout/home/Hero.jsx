@@ -40,7 +40,7 @@ const Hero = () => {
 
             {/* Video decorativo de fondo para reforzar el impacto visual */}
             <div className="video-container">
-                <video src="./assets/video_fondo.mp4" loop autoPlay muted className="video" type="video/mp4"></video>
+                <video src="/assets/video_fondo.mp4" loop autoPlay muted className="video" type="video/mp4"></video>
 
             </div>
         </section>

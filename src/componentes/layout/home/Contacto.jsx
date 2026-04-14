@@ -14,9 +14,9 @@ const Contacto = () => {
     // Expresiones regulares para validar entradas.
     const regEx = {
 
-        nombre: /^[a-zA-Z\s-]{2,}$/,
-        correo: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        mensaje: /^.{1,}$/,
+        nombre: /^[a-zA-Z\s-]{2,}$/, 
+        correo: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 
+        mensaje: /^.{1,}$/, 
 
 
     };
