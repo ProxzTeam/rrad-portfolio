@@ -8,20 +8,7 @@ import {
     CVLanguageRow,
     CVSection,
 } from "./cv/CVSections";
-import {
-    certifications,
-    contactLinks,
-    cvHeader,
-    education,
-    experiences,
-    interests,
-    languages,
-    personalData,
-    profileSummary,
-    socialLinks,
-    softSkills,
-    technicalSkills,
-} from "../data/cv";
+import { getTranslation } from "../data/cv.translations";
 import "./CVPage.css";
 
 // Vista dedicada del CV con tema independiente y exportacion a PDF.
@@ -31,13 +18,43 @@ const CVPage = () => {
         return JSON.parse(localStorage.getItem("dark-mode") || "false");
     });
 
+    // Estado para el idioma del CV
+    const [language, setLanguage] = useState(() => {
+        return localStorage.getItem("cv-language") || "en";
+    });
+
     // Estado para bloquear el boton mientras se genera el PDF.
     const [isGenerating, setIsGenerating] = useState(false);
+
+    // Obtener traducciones según el idioma seleccionado
+    const translation = getTranslation(language);
+    const {
+        cvHeader,
+        socialLinks,
+        personalData,
+        contactLinks,
+        profileSummary,
+        experiences,
+        certifications,
+        education,
+        technicalSkills,
+        softSkills,
+        languages,
+        interests,
+        sections,
+        personalDataLabel,
+        socialMediaLabel,
+    } = translation;
 
     // Persiste la preferencia de tema en el mismo key compartido por el home.
     useEffect(() => {
         localStorage.setItem("dark-mode", JSON.stringify(isDarkMode));
     }, [isDarkMode]);
+
+    // Persiste la preferencia de idioma
+    useEffect(() => {
+        localStorage.setItem("cv-language", language);
+    }, [language]);
 
     // Genera y descarga el CV en PDF usando import dinamico.
     const downloadPDF = async () => {
@@ -55,10 +72,13 @@ const CVPage = () => {
 
             await new Promise((resolve) => setTimeout(resolve, 300));
 
+            // Cambiar el nombre del PDF según el idioma
+            const filename = language === "es" ? "Angel_Rivera_CV_ES.pdf" : "Angel_Rivera_CV_EN.pdf";
+
             const worker = html2pdf()
                 .set({
                     margin: 0,
-                    filename: "Angel_Rivera_CV.pdf",
+                    filename: filename,
                     image: { type: "jpeg", quality: 1 },
                     html2canvas: {
                         scale: 2,
@@ -107,6 +127,8 @@ const CVPage = () => {
                 isGenerating={isGenerating}
                 onToggleDarkMode={setIsDarkMode}
                 onDownloadPDF={downloadPDF}
+                language={language}
+                onLanguageChange={setLanguage}
             />
 
             <div id="cv-page">
@@ -115,15 +137,17 @@ const CVPage = () => {
                     socialLinks={socialLinks}
                     personalData={personalData}
                     contactLinks={contactLinks}
+                    personalDataLabel={personalDataLabel}
+                    socialMediaLabel={socialMediaLabel}
                 />
 
                 <div className="cv-body">
                     <main className="cv-main">
-                        <CVSection label="Profile">
+                        <CVSection label={sections.profile}>
                             <p className="summary-text">{profileSummary}</p>
                         </CVSection>
 
-                        <CVSection label="Experience">
+                        <CVSection label={sections.experience}>
                             {experiences.map((experience) => (
                                 <CVExperienceItem
                                     key={`${experience.role}-${experience.company}`}
@@ -132,7 +156,7 @@ const CVPage = () => {
                             ))}
                         </CVSection>
 
-                        <CVSection label="Certifications">
+                        <CVSection label={sections.certifications}>
                             {certifications.map((certification) => (
                                 <CVCertificationItem
                                     key={certification.number}
@@ -144,31 +168,31 @@ const CVPage = () => {
 
                     <aside className="cv-aside">
                         <div className="aside-section">
-                            <div className="aside-label">Education</div>
+                            <div className="aside-label">{sections.education}</div>
                             <div className="edu-degree">{education.degree}</div>
                             <div className="edu-school">{education.school}</div>
                             <div className="edu-year">{education.year}</div>
                         </div>
 
                         <div className="aside-section">
-                            <div className="aside-label">Technical Skills</div>
+                            <div className="aside-label">{sections.technicalSkills}</div>
                             <CVChipList items={technicalSkills} className="chips-wrap" />
                         </div>
 
                         <div className="aside-section">
-                            <div className="aside-label">Soft Skills</div>
+                            <div className="aside-label">{sections.softSkills}</div>
                             <CVChipList items={softSkills} className="chips-wrap" />
                         </div>
 
                         <div className="aside-section">
-                            <div className="aside-label">Languages</div>
-                            {languages.map((language) => (
-                                <CVLanguageRow key={language.name} {...language} />
+                            <div className="aside-label">{sections.languages}</div>
+                            {languages.map((lang) => (
+                                <CVLanguageRow key={lang.name} {...lang} />
                             ))}
                         </div>
 
                         <div className="aside-section">
-                            <div className="aside-label">Interests</div>
+                            <div className="aside-label">{sections.interests}</div>
                             <CVChipList items={interests} className="chips-wrap" />
                         </div>
                     </aside>

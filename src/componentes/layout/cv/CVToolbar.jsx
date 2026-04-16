@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import DarkModeSwitch from "../../DarkModeSwitch";
+import "./CVToolbar.css";
 
 // Barra superior del CV: mantiene acciones separadas del contenido exportable.
-const CVToolbar = ({ isDarkMode, isGenerating, onToggleDarkMode, onDownloadPDF }) => {
+const CVToolbar = ({ isDarkMode, isGenerating, onToggleDarkMode, onDownloadPDF, language = "en", onLanguageChange }) => {
     return (
         <div className="toolbar">
             <a
@@ -27,6 +28,23 @@ const CVToolbar = ({ isDarkMode, isGenerating, onToggleDarkMode, onDownloadPDF }
                     useBodyClass={false}
                 />
 
+                <div className="language-selector">
+                    <button
+                        className={`language-btn ${language === "en" ? "active" : ""}`}
+                        onClick={() => onLanguageChange?.("en")}
+                        title="English"
+                    >
+                        EN
+                    </button>
+                    <button
+                        className={`language-btn ${language === "es" ? "active" : ""}`}
+                        onClick={() => onLanguageChange?.("es")}
+                        title="Español"
+                    >
+                        ES
+                    </button>
+                </div>
+
                 <Link className="btn btn-outline" to="/">
                     Volver
                 </Link>
@@ -38,7 +56,7 @@ const CVToolbar = ({ isDarkMode, isGenerating, onToggleDarkMode, onDownloadPDF }
                     type="button"
                     disabled={isGenerating}
                 >
-                    {isGenerating ? "Generando..." : "Download PDF"}
+                    {isGenerating ? (language === "es" ? "Generando..." : "Generating...") : (language === "es" ? "Descargar PDF" : "Download PDF")}
                 </button>
             </div>
         </div>

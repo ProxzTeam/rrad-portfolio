@@ -2,7 +2,9 @@ import './Contacto.css'
 
 // Seccion de contacto simplificada con CTA directo a WhatsApp.
 const Contacto = () => {
-    const whatsappUrl = 'https://wa.me/523921064092?text=Hola%20Danilo%2C%20quiero%20hablar%20sobre%20mi%20proyecto';
+    const numero = '523921064092';
+    const mensaje = 'Hola Danilo, quiero hablar sobre mi proyecto';
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensaje)}`;
 
     return (
         <>
@@ -10,7 +12,7 @@ const Contacto = () => {
                 <div className="contacto-contenido">
                     <div className="encabezado contacto-encabezado">
                         <h3 className="titulo">Hagamos tu idea realidad</h3>
-                        <p className="subtitulo">Escribeme directamente por WhatsApp y te respondo lo antes posible.</p>
+                        <p className="subtitulo">Escribeme directamente por WhatsApp.</p>
                     </div>
 
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="boton contacto-whatsapp">

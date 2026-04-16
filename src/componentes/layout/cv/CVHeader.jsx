@@ -16,7 +16,7 @@ const SocialLink = ({ label, href, iconPath }) => (
     </a>
 );
 
-const CVHeader = ({ header, socialLinks, personalData, contactLinks }) => {
+const CVHeader = ({ header, socialLinks, personalData, contactLinks, personalDataLabel = "Personal Data", socialMediaLabel = "Social Media" }) => {
     return (
         <header className="cv-header">
             <div className="header-inner">
@@ -32,7 +32,7 @@ const CVHeader = ({ header, socialLinks, personalData, contactLinks }) => {
 
                 <div className="header-social">
                     <div className="social-block social-block-media">
-                        <p className="social-title">Social Media</p>
+                        <p className="social-title">{socialMediaLabel}</p>
                         <div className="social-links">
                             {socialLinks.map((link) => (
                                 <SocialLink key={link.label} {...link} />
@@ -43,7 +43,7 @@ const CVHeader = ({ header, socialLinks, personalData, contactLinks }) => {
 
                 <div className="header-contacts">
                     <div className="social-block social-block-personal">
-                        <p className="social-title">Personal Data</p>
+                        <p className="social-title">{personalDataLabel}</p>
                         <div className="personal-data">
                             {personalData.map((item) => (
                                 <span className="personal-item" key={item}>
