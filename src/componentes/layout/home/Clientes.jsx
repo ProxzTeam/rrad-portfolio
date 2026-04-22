@@ -1,14 +1,14 @@
 import "./Clientes.css"
 
 // Seccion de prueba social: logos de clientes o marcas.
-const Clientes = () => {
+const Clientes = ({ language = "en" }) => {
 
     return (
         <>
             <section className="clientes">
                 <div className="encabezado">
-                    <h3 className="titulo">Mis Clientes</h3>
-                    <p className="subtitulo">Estas marcas han confiado en mis servicios como freelance</p>
+                    <h3 className="titulo">{language === "es" ? "Mis Clientes" : "My Clients"}</h3>
+                    <p className="subtitulo">{language === "es" ? "Estas marcas han confiado en mis servicios como freelance" : "These brands have trusted my freelance services"}</p>
                 </div>
 
                 {/* Logos renderizados de forma estatica */}

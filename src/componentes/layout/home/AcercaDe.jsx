@@ -1,7 +1,19 @@
 import './AcercaDe.css';
 
 // Seccion de perfil profesional y propuesta de valor.
-const AcercaDe = () => {
+const AcercaDe = ({ language = 'en' }) => {
+    const t = {
+        pretitle: language === 'es' ? 'Acerca de mí' : 'About me',
+        title: language === 'es' ? 'La razón por la que deberías contratarme...' : 'Why you should hire me...',
+        summary: language === 'es'
+            ? 'Soy Ángel Danilo Rivera Rojas, estudiante de Ingeniería en Sistemas Computacionales y desarrollador apasionado por la tecnología, el diseño y la creación de soluciones digitales con impacto real.'
+            : 'I am Angel Danilo Rivera Rojas, a Computer Systems Engineering student and developer passionate about technology, design, and creating digital solutions with real impact.',
+        summary2: language === 'es'
+            ? 'Me especializo en el desarrollo de aplicaciones web y móviles, combinando lógica, estructura y una fuerte atención al detalle en la experiencia de usuario. Me motiva construir proyectos que no solo funcionen bien, sino que también se vean profesionales y transmitan identidad.'
+            : 'I specialize in web and mobile application development, combining logic, structure, and strong attention to detail in user experience. I am motivated to build projects that not only work well, but also look professional and convey identity.',
+        cta: language === 'es' ? 'Mandame un mensaje' : 'Send me a message',
+    };
+
     return (
         <>
             <section className="acerca-de" id="acerca-de">
@@ -16,15 +28,15 @@ const AcercaDe = () => {
                     </div>
                     <div className="col-2">
                         {/* Texto descriptivo + CTA para contacto */}
-                        <h4 className="pre-titulo">Acerca de mí</h4>
-                        <h3 className="titulo">La razón por la que deberías contratarme...</h3>
-                        <p className="resumen">Soy Ángel Danilo Rivera Rojas, estudiante de Ingeniería en Sistemas Computacionales y desarrollador apasionado por la tecnología, el diseño y la creación de soluciones digitales con impacto real.
+                        <h4 className="pre-titulo">{t.pretitle}</h4>
+                        <h3 className="titulo">{t.title}</h3>
+                        <p className="resumen">{t.summary}
                             <br />
-                            Me especializo en el desarrollo de aplicaciones web y móviles, combinando lógica, estructura y una fuerte atención al detalle en la experiencia de usuario. Me motiva construir proyectos que no solo funcionen bien, sino que también se vean profesionales y transmitan identidad.
+                            {t.summary2}
                             <br />
                             </p>
                         <a href="#contacto" className="boton">
-                            Mandame un mensaje
+                            {t.cta}
                             <span className="icono">
 
 

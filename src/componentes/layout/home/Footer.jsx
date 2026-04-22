@@ -1,14 +1,14 @@
 import './Footer.css'
 
 // Pie de pagina con enlaces a redes sociales.
-const Footer = () => {
+const Footer = ({ language = 'en' }) => {
 
     return (
         <>
             <footer className="footer">
                 <div className="encabezado">
-                    <h3 className="titulo">Redes Sociales</h3>
-                    <p className="subtitulo">Sigueme en redes para estar al tanto de las ultimas novedades. </p>
+                    <h3 className="titulo">{language === 'es' ? 'Redes Sociales' : 'Social Media'}</h3>
+                    <p className="subtitulo">{language === 'es' ? 'Sigueme en redes para estar al tanto de las ultimas novedades.' : 'Follow me on social media to stay up to date with the latest news.'} </p>
                 </div>
 
                 {/* Lista de enlaces externos a perfiles sociales */}
@@ -43,7 +43,7 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <p className="copyright">© 2026 RRAD. Todos los derechos reservados.</p>
+                <p className="copyright">{language === 'es' ? '© 2026 RRAD. Todos los derechos reservados.' : '© 2026 RRAD. All rights reserved.'}</p>
             </footer>
         </>
     );

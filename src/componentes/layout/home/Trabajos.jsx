@@ -4,14 +4,26 @@ import trabajos from './data/trabajos';
 import Modal from './Modal';
 
 // Seccion de portafolio con filtro por categoria y modal de detalle.
-const Trabajos = () => {
+const Trabajos = ({ language = 'en' }) => {
+    const labels = {
+        all: language === 'es' ? 'Todos' : 'All',
+        webDesign: language === 'es' ? 'Diseño Web' : 'Web Design',
+        webDev: language === 'es' ? 'Desarrollo Web' : 'Web Development',
+        mobile: language === 'es' ? 'Aplicaciones Moviles' : 'Mobile Apps',
+        software: language === 'es' ? 'Desarrollo de Software' : 'Software Development',
+        title: language === 'es' ? 'Mis Trabajos' : 'My Projects',
+        subtitle: language === 'es'
+            ? 'Estos son algunos de los proyectos en los que he trabajado'
+            : 'These are some of the projects I have worked on',
+    };
+
     // Configuracion de los filtros. Si agregas otra categoria, solo extiende esta lista.
     const filtros = [
-        { id: 'todos', label: 'Todos' },
-        { id: 'diseño-web', label: 'Diseño Web' },
-        { id: 'desarrollo-web', label: 'Desarrollo Web' },
-        { id: 'aplicaciones-moviles', label: 'Aplicaciones Moviles' },
-        { id: 'desarrollo-software', label: 'Desarrollo de Software' },
+        { id: 'todos', label: labels.all },
+        { id: 'diseño-web', label: labels.webDesign },
+        { id: 'desarrollo-web', label: labels.webDev },
+        { id: 'aplicaciones-moviles', label: labels.mobile },
+        { id: 'desarrollo-software', label: labels.software },
     ];
 
     // Categoria activa del filtro.
@@ -76,8 +88,8 @@ const Trabajos = () => {
 
         <section className="trabajos" id="trabajos">
             <div className="encabezado">
-                <h3 className="titulo">Mis Trabajos</h3>
-                <p className="subtitulo">Estos son algunos de los proyectos en los que he trabajado</p>
+                <h3 className="titulo">{labels.title}</h3>
+                <p className="subtitulo">{labels.subtitle}</p>
             </div>
 
             <div className="filtros">
