@@ -1,63 +1,58 @@
 import "./DarkModeSwitch.css";
 import { useState, useEffect } from "react";
 
+/**
+ * Switch de tema claro/oscuro. Persiste la preferencia en localStorage.
+ * @param {Object} props - Opciones de configuración
+ * @param {string} props.name - Nombre del input
+ * @param {string} props.id - ID del input
+ * @param {string} props.className - Clases adicionales
+ * @param {string} props.persistKey - Clave de localStorage (default: "dark-mode")
+ * @param {boolean} props.useBodyClass - Aplicar clase "dark" en body (default: true)
+ */
 const DarkModeSwitch = ({
-    checked,
-    onChange,
     name = "dark-mode",
     id = "dark-mode",
     className = "",
     persistKey = "dark-mode",
     useBodyClass = true,
 }) => {
-
-    const isControlled = typeof checked === "boolean";
-
     // Toma el tema guardado en localStorage para mantener preferencia entre recargas.
     const estadoInicial = JSON.parse(localStorage.getItem(persistKey) || false);
     // Estado que controla si el sitio está en modo oscuro o claro.
     const [darkMode, setDarkMode] = useState(estadoInicial);
-    const currentValue = isControlled ? checked : darkMode;
 
     // Alterna el estado y lo persiste en localStorage.
     const toggleDarkMode = () => {
-        const nextValue = !currentValue;
-
-        if (!isControlled) {
-            setDarkMode(nextValue);
+        setDarkMode(prev => {
+            const nextValue = !prev;
             localStorage.setItem(persistKey, nextValue);
-        }
-
-        if (onChange) {
-            onChange(nextValue);
-        }
+            return nextValue;
+        });
     };
 
     // Aplica o remueve la clase "dark" en <body> para activar estilos globales de tema.
     useEffect(() => {
-        if (!useBodyClass) {
-            return;
-        }
-
-        if (currentValue) {
+        if (!useBodyClass) return;
+        
+        if (darkMode) {
             document.body.classList.add("dark");
         } else {
             document.body.classList.remove("dark");
         }
-    }, [currentValue, useBodyClass]);
+    }, [darkMode, useBodyClass]);
 
     return (
-        <>
+        <label className={`dark-mode ${className}`.trim()}>
             {/* Switch visual del tema: input oculto + iconos de sol y luna */}
-            <label className={`dark-mode ${className}`.trim()}>
-                <input
-                    type="checkbox"
-                    name={name}
-                    id={id}
-                    checked={currentValue}
-                    onChange={toggleDarkMode}
-                />
-                <span className={`icono sol ${!currentValue ? "active" : ""}`}>
+            <input
+                type="checkbox"
+                name={name}
+                id={id}
+                checked={darkMode}
+                onChange={toggleDarkMode}
+            />
+            <span className={`icono sol ${!darkMode ? "active" : ""}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -69,7 +64,7 @@ const DarkModeSwitch = ({
                     </svg>
                 </span>
 
-                <span className={`icono luna ${currentValue ? "active" : ""}`}>
+                <span className={`icono luna ${darkMode ? "active" : ""}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -81,7 +76,6 @@ const DarkModeSwitch = ({
                     </svg>
                 </span>
             </label>
-        </>
     );
 };
 

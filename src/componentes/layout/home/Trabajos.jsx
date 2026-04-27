@@ -2,20 +2,12 @@ import './Trabajos.css'
 import { useState } from 'react';
 import trabajos from './data/trabajos';
 import Modal from './Modal';
+import { getHomeTexts } from './data/homeTexts';
+import { ArrowCircleIcon } from './icons/SVGIcons';
 
 // Seccion de portafolio con filtro por categoria y modal de detalle.
 const Trabajos = ({ language = 'en' }) => {
-    const labels = {
-        all: language === 'es' ? 'Todos' : 'All',
-        webDesign: language === 'es' ? 'Diseño Web' : 'Web Design',
-        webDev: language === 'es' ? 'Desarrollo Web' : 'Web Development',
-        mobile: language === 'es' ? 'Aplicaciones Moviles' : 'Mobile Apps',
-        software: language === 'es' ? 'Desarrollo de Software' : 'Software Development',
-        title: language === 'es' ? 'Mis Trabajos' : 'My Projects',
-        subtitle: language === 'es'
-            ? 'Estos son algunos de los proyectos en los que he trabajado'
-            : 'These are some of the projects I have worked on',
-    };
+    const labels = getHomeTexts(language).trabajos;
 
     // Configuracion de los filtros. Si agregas otra categoria, solo extiende esta lista.
     const filtros = [
@@ -75,17 +67,14 @@ const Trabajos = ({ language = 'en' }) => {
                         <p className="categoria">{trabajo.info.categoria}</p>
                     </div>
                     <a href="#" className="btn-ir" onClick={(e) => openModal(e, trabajo.id)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8m5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707z" />
-                        </svg>
+                        <ArrowCircleIcon width={16} height={16} />
                     </a>
                 </div>
             </div>
         );
     };
 
-    return (<>
-
+    return (
         <section className="trabajos" id="trabajos">
             <div className="encabezado">
                 <h3 className="titulo">{labels.title}</h3>
@@ -114,12 +103,10 @@ const Trabajos = ({ language = 'en' }) => {
                     <TrabajoCard key={trabajo.id} trabajo={trabajo} />
                 ))}
             </div>
+
+            {/* Render condicional del modal cuando hay un trabajo abierto. */}
+            {estadosModal && <Modal closeModal={closeModal} trabajo={trabajoSeleccionado} />}
         </section>
-
-        {/* Render condicional del modal cuando hay un trabajo abierto. */}
-        {estadosModal && <Modal closeModal={closeModal} trabajo={trabajoSeleccionado} />}
-
-    </>
     );
 };
 

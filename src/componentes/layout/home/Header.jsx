@@ -1,23 +1,17 @@
 import "./Header.css";
 import DarkModeSwitch from "../../DarkModeSwitch";
 import { Link } from "react-router-dom";
+import { getHomeTexts } from "./data/homeTexts";
 
 // Encabezado principal con marca, navegacion y selector de tema.
 const Header = ({ language = "en", onLanguageChange }) => {
-  const t = {
-    subtitle: language === "es" ? "Ingeniero en Sistemas Computacionales" : "Computer Systems Engineer",
-    works: language === "es" ? "Trabajos" : "Projects",
-    about: language === "es" ? "Acerca de" : "About",
-    contact: language === "es" ? "Contacto" : "Contact",
-    cv: language === "es" ? "Mi CV" : "My CV",
-  };
+  const t = getHomeTexts(language).header;
 
   return (
-    <>
       <header className="header">
         {/* Identidad visual (logo + nombre profesional) */}
         <div className="logo">
-          <img className="logo-rrad" src="./logo.png"
+          <img className="logo-rrad" src="/logo.png"
             alt="Logo de la marca" />
           <div className="logo-texto">
             <h2 className="titulo">Danilo Rivera</h2>
@@ -49,10 +43,9 @@ const Header = ({ language = "en", onLanguageChange }) => {
               ES
             </button>
           </div>
-          <DarkModeSwitch></DarkModeSwitch>
+          <DarkModeSwitch />
         </div>
       </header>
-    </>
   );
 };
 

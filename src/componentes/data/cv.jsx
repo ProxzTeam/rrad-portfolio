@@ -1,5 +1,5 @@
-// Datos del CV separados del JSX para poder ampliar contenido sin tocar la vista.
-// Si quieres agregar una nueva experiencia, certificacion o habilidad, este es el lugar.
+// Datos compartidos del CV separados del JSX para poder ampliar contenido sin tocar la vista.
+// Si quieres agregar o ajustar contenido reutilizado, este es el lugar.
 
 export const cvHeader = {
     name: ["Angel Danilo", "Rivera Rojas"],
@@ -32,12 +32,6 @@ export const socialLinks = [
         iconPath:
             "M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z",
     },
-];
-
-export const personalData = [
-    "Date of Birth: 01/11/2004",
-    "Nationality: Mexican",
-    "Status: Student",
 ];
 
 export const contactLinks = [
@@ -89,48 +83,19 @@ export const experiences = [
 export const certifications = [
     {
         number: "01",
-        name: "Pensamiento estrategico y mentalidad estrategica",
-        issuer: "Santander Open Academy",
-    },
-    {
-        number: "02",
-        name: "Fundamentals of Machine Learning and Artificial Intelligence",
-        issuer: "AWS Training & Certification",
-    },
-    {
-        number: "03",
-        name: "AWS Cloud Foundations for Professionals - Cloud Practitioner Essentials",
-        issuer: "AWS Training & Certification",
-    },
-    {
-        number: "04",
-        name: "Conceptos basicos de redes",
-        issuer: "CISCO Networking Academy",
-    },
-    {
-        number: "05",
-        name: "Python Essentials 1",
-        issuer: "CISCO Networking Academy",
-    },
-    {
-        number: "06",
-        name: "Python Essentials 2",
-        issuer: "CISCO Networking Academy",
-    },
-    {
-        number: "07",
-        name: "Official Scrum Fundamentals Certification",
+        name: {
+            en: "Official Scrum Fundamentals Certification",
+            es: "Certificación Oficial de Fundamentos Scrum",
+        },
         issuer: "AIBES",
     },
     {
-        number: "08",
-        name: "Python 101 for Data Science",
-        issuer: "IBM",
-    },
-    {
-        number: "09",
-        name: "Introduction to Cloud",
-        issuer: "IBM",
+        number: "02",
+        name: {
+            en: "Professional Web Design Complete, Practical Course from Scratch",
+            es: "Diseño Web Profesional Curso Completo, Práctico y desde 0",
+        },
+        issuer: "UDEMY",
     },
 ];
 
@@ -153,8 +118,6 @@ export const technicalSkills = [
     "Git",
     "REST APIs",
     "Scrum",
-    "Python",
-
 ];
 
 export const softSkills = [
