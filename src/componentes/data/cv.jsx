@@ -97,6 +97,22 @@ export const certifications = [
         },
         issuer: "UDEMY",
     },
+    {
+        number: "03",
+        name: {
+            en: "JavaScript TOTAL - From Zero to Web Developer in 18 Days",
+            es: "JavaScript TOTAL - De Cero a Programador Web en 18 Días",
+        },
+        issuer: "UDEMY",
+    },
+    {
+        number: "04",
+        name: {
+            en: "React JS with TypeScript and Next.js – Full Stack Development Course",
+            es: "React JS con TypeScript y Next.js Curso Desarrollo FullStack",
+        },
+        issuer: "UDEMY",
+    },
 ];
 
 export const education = {
