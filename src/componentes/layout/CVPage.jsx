@@ -33,7 +33,6 @@ const CVPage = () => {
     const translation = getTranslation(language);
     const {
         cvHeader,
-        socialLinks,
         personalData,
         contactLinks,
         profileSummary,
@@ -122,7 +121,6 @@ const CVPage = () => {
             <div id="cv-page">
                 <CVHeader
                     header={cvHeader}
-                    socialLinks={socialLinks}
                     personalData={personalData}
                     contactLinks={contactLinks}
                     personalDataLabel={personalDataLabel}
