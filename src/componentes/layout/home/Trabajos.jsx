@@ -105,7 +105,7 @@ const Trabajos = ({ language = 'en' }) => {
             </div>
 
             {/* Render condicional del modal cuando hay un trabajo abierto. */}
-            {estadosModal && <Modal closeModal={closeModal} trabajo={trabajoSeleccionado} />}
+            {estadosModal && <Modal key={trabajoSeleccionado.id} closeModal={closeModal} trabajo={trabajoSeleccionado} />}
         </section>
     );
 };
