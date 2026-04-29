@@ -7,6 +7,7 @@ import {
     CVExperienceItem,
     CVLanguageRow,
     CVSection,
+    CVProjectItem,
 } from "./cv/CVSections";
 import { getTranslation } from "../data/cv.translations";
 import "./CVPage.css";
@@ -38,6 +39,7 @@ const CVPage = () => {
         profileSummary,
         experiences,
         certifications,
+        projects,
         education,
         technicalSkills,
         softSkills,
@@ -146,6 +148,15 @@ const CVPage = () => {
                                 <CVCertificationItem
                                     key={certification.number}
                                     {...certification}
+                                />
+                            ))}
+                        </CVSection>
+
+                        <CVSection label={sections.projects}>
+                            {projects.map((project) => (
+                                <CVProjectItem
+                                    key={project.number}
+                                    {...project}
                                 />
                             ))}
                         </CVSection>

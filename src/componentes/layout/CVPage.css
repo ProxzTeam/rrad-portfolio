@@ -517,6 +517,76 @@ body {
     margin-top: 2px;
 }
 
+/* Listado de proyectos. */
+.cv-view .project-item {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cv-view .project-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.cv-view .project-header {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.cv-view .project-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border: 1px solid var(--orange-border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+}
+
+.cv-view .project-title-section {
+    flex: 1;
+}
+
+.cv-view .project-name {
+    font-family: var(--font-display-cv);
+    font-size: 17px;
+    color: var(--text-1);
+    line-height: 1.2;
+}
+
+.cv-view .project-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.cv-view .project-techs {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.cv-view .project-tech {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border: 1px solid var(--orange-border);
+    border-radius: 4px;
+    padding: 3px 8px;
+}
+
 /* Secciones del panel lateral. */
 .cv-view .aside-section {
     margin-bottom: 24px;
@@ -808,6 +878,48 @@ body {
 .cv-view.is-exporting .cert-issuer {
     font-size: 9px;
     margin-top: 1px;
+}
+
+.cv-view.is-exporting .project-item {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+
+.cv-view.is-exporting .project-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cv-view.is-exporting .project-header {
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.cv-view.is-exporting .project-num {
+    font-size: 8px;
+    padding: 1px 4px;
+    margin-top: 1px;
+}
+
+.cv-view.is-exporting .project-name {
+    font-size: 14px;
+    line-height: 1.15;
+}
+
+.cv-view.is-exporting .project-desc {
+    font-size: 10px;
+    line-height: 1.4;
+    margin: 6px 0;
+}
+
+.cv-view.is-exporting .project-techs {
+    margin-top: 6px;
+    gap: 4px;
+}
+
+.cv-view.is-exporting .project-tech {
+    font-size: 8px;
+    padding: 2px 5px;
 }
 
 .cv-view.is-exporting .aside-section {

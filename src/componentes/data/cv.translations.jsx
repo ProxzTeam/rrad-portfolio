@@ -6,6 +6,7 @@ import {
     contactLinks,
     socialLinks,
     technicalSkills,
+    projects as sharedProjects,
 } from "./cv.jsx";
 
 const mapCertifications = (language) =>
@@ -14,6 +15,19 @@ const mapCertifications = (language) =>
         name: name[language] || name.en,
         issuer,
     }));
+
+const mapProjects = (language) => {
+    if (!sharedProjects) return [];
+
+    const list = Array.isArray(sharedProjects) ? sharedProjects : [sharedProjects];
+
+    return list.map(({ number, name = {}, description = {}, technologies = [] }) => ({
+        number,
+        name: (typeof name === "object" ? name[language] || name.en : name) || "",
+        description: (typeof description === "object" ? description[language] || description.en : description) || "",
+        technologies,
+    }));
+};
 
 export const cvTranslations = {
     en: {
@@ -58,6 +72,7 @@ export const cvTranslations = {
             },
         ],
         certifications: mapCertifications("en"),
+        projects: mapProjects("en"),
         education: {
             degree: "B.Eng. Computer Systems Engineering",
             school: "Instituto Tecnologico de Ocotlan",
@@ -87,6 +102,7 @@ export const cvTranslations = {
             profile: "Profile",
             experience: "Experience",
             certifications: "Certifications",
+            projects: "Projects",
             education: "Education",
             technicalSkills: "Technical Skills",
             softSkills: "Soft Skills",
@@ -139,6 +155,7 @@ export const cvTranslations = {
             },
         ],
         certifications: mapCertifications("es"),
+        projects: mapProjects("es"),
         education: {
             degree: "Ingeniería en Sistemas Computacionales",
             school: "Instituto Tecnológico de Ocotlán",
@@ -168,6 +185,7 @@ export const cvTranslations = {
             profile: "Perfil",
             experience: "Experiencia",
             certifications: "Certificaciones",
+            projects: "Proyectos",
             education: "Educación",
             technicalSkills: "Habilidades Técnicas",
             softSkills: "Habilidades Blandas",

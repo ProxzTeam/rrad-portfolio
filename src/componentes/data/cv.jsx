@@ -54,6 +54,12 @@ export const contactLinks = [
         href: "https://www.linkedin.com/in/angel-danilo-rivera-rojas-820014357/",
         external: true,
     },
+
+    {
+        label: "GitHub: Danilo Rivera",
+        href: "https://github.com/repos?q=owner%3A%40me",
+        external: true,
+    },
 ];
 
 export const profileSummary =
@@ -121,6 +127,53 @@ export const certifications = [
     },
 ];
 
+export const projects = [
+    {
+        number: "01",
+        name: {
+            en: "Personal Portfolio Website",
+            es: "Sitio Web Personal de Portafolio",
+        },
+        description: {
+            en: "A modern, responsive personal portfolio website built with React and vanilla CSS. Features include a comprehensive CV page with downloadable PDF export, dark mode toggle, multi-language support (Spanish/English), smooth navigation with React Router, and project showcase. Optimized for performance and deployed on Vercel for fast global accessibility.",
+            es: "Un sitio web personal de portafolio moderno y responsivo construido con React y CSS puro. Incluye una página de CV completa con exportación a PDF, tema oscuro, soporte multilingüe (Español/Inglés), navegación fluida con React Router, y galería de proyectos. Optimizado para rendimiento y desplegado en Vercel para accesibilidad global rápida.",
+
+        },
+
+        technologies: ["React", "React Router", "CSS", "JavaScript", "HTML5", "Vite", "Vercel", "Figma"],
+    },
+
+    {
+        number: "02",
+        name: {
+            en: "FitPlanner App",
+            es: "App FitPlanner",
+        },
+        description: {
+            en: "A smart fitness planning mobile application designed to generate personalized workout routines based on user goals, experience level, available equipment, and training preferences. Features include dynamic routine generation, progress tracking, multi-language support, and Firebase integration for real-time data storage. Built with a focus on user motivation, performance, and long-term fitness consistency.",
+            es: "Una aplicación móvil de planificación fitness inteligente diseñada para generar rutinas personalizadas según los objetivos del usuario, nivel de experiencia, equipo disponible y preferencias de entrenamiento. Incluye generación dinámica de rutinas, seguimiento de progreso, soporte multilenguaje e integración con Firebase para almacenamiento en tiempo real. Construida con un enfoque en la motivación, el rendimiento y la constancia a largo plazo."
+        },
+
+        technologies: [
+            "Kotlin",
+            "Android Studio",
+            "Firebase Realtime Database",
+            "Firebase Authentication",
+            "XML",
+            "MVVM Architecture",
+            "RecyclerView",
+            "Navigation Component",
+            "LiveData",
+            "Material Design",
+            "JSON",
+            "Figma"
+
+        ]
+    },
+
+
+];
+
 export const education = {
     degree: "B.Eng. Computer Systems Engineering",
     school: "Instituto Tecnologico de Ocotlan",
@@ -132,11 +185,10 @@ export const technicalSkills = [
     "Node.js",
     "TypeScript",
     "JavaScript",
-    "Python",
+    "HTML / CSS",
+    "Java",
     "Kotlin",
     "Android",
-    "HTML / CSS",
-    "AWS",
     "Git",
     "REST APIs",
     "Scrum",

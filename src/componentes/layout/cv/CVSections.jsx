@@ -53,3 +53,24 @@ export const CVLanguageRow = ({ name, level }) => (
         <span className="lang-level">{level}</span>
     </div>
 );
+
+export const CVProjectItem = ({ number, name, description, technologies = [] }) => (
+    <div className="project-item">
+        <div className="project-header">
+            <span className="project-num">{number}</span>
+            <div className="project-title-section">
+                <div className="project-name">{name}</div>
+            </div>
+        </div>
+        <p className="project-desc">{description}</p>
+        {technologies.length > 0 ? (
+            <div className="project-techs">
+                {technologies.map((tech) => (
+                    <span className="project-tech" key={tech}>
+                        {tech}
+                    </span>
+                ))}
+            </div>
+        ) : null}
+    </div>
+);
