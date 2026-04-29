@@ -140,6 +140,7 @@ export const technicalSkills = [
     "Git",
     "REST APIs",
     "Scrum",
+    "Figma",
 ];
 
 export const softSkills = [
