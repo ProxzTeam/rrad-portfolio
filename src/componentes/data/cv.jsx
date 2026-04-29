@@ -73,7 +73,7 @@ export const experiences = [
         company: "Hewlett Packard Enterprise",
         date: "Academic Program",
         description:
-            "Participated in an intensive bootcamp by HPE, gaining hands-on experience with enterprise software practices, agile methodologies, and technology solutions.",
+            "Participated in an intensive bootcamp by HPE, gaining hands-on experience with enterprise software development, agile methodologies, and technology solutions.",
         tags: ["HPE", "Agile", "Enterprise"],
     },
     {

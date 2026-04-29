@@ -126,7 +126,7 @@ export const cvTranslations = {
                 company: "Hewlett Packard Enterprise",
                 date: "Programa Académico",
                 description:
-                    "Participación en bootcamp intensivo por HPE, obteniendo experiencia práctica en prácticas de software empresarial, metodologías ágiles y soluciones tecnológicas.",
+                    "Participación en bootcamp intensivo por HPE, obteniendo experiencia práctica en desarrollo de software empresarial, metodologías ágiles y soluciones tecnológicas.",
                 tags: ["HPE", "Agile", "Empresarial"],
             },
             {
